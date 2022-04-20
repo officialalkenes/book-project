@@ -1,9 +1,21 @@
 from django.db import models
 
+from django.utils.translation import gettext_lazy as _ # remind me later
 
+from django.contrib.auth.models import User
 
-# Create your models here.
+class Category(models.Model):
+    cat = models.CharField(max_length=100,
+                           verbose_name = _("Book Category"))
+    slug = models.SlugField(max_length=100, blank=True)
+
+    def __str__(self) -> str:
+        return self.cat
+    class Meta:
+        pass
+
 class Book(models.Model):
+
     author = models.CharField(
         max_length=20000,
         help_text="Name of Author to avoid Plagiarisation",
@@ -11,23 +23,28 @@ class Book(models.Model):
         blank=True,
         default='Unknown'
         )
+    category = models.ManyToManyField(Category)
+
     title = models.CharField(
         max_length=2000,
     ) # Introduction to computer science
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             verbose_name=_("Upload by"))
+
     slug = models.SlugField(
         max_length=2000
     ) # freebook.com/introduction-to-computer-science
+
     summary = models.TextField() # 3 == "3"
     isbn = models.PositiveIntegerField() # positive values only
-    # neg_isbn = models.PositiveIntegerField() # Only Positive values
-    # big_isbn = models.PositiveBigIntegerField()
-    # decimal_isbn = models.DecimalField(max_digits=14, decimal_places=2) # 2.00 2.213
+
+    image = models.ImageField(upload_to='images', blank=True) # add Verbose name
+    docs = models.FileField(upload_to='docs', blank=True) # add Verbose name
+
     created = models.DateTimeField(auto_now_add=True) # First entry only 7:19
     updated = models.DateTimeField(auto_now=True) # auto save the time of update 7:29
-    birthday = models.DateField()
-    # book_image = models.ImageField()
-    # pdf_files = models.FileField()
-    author_web = models.URLField() # www.google.com
+    author_web = models.URLField(blank=True) # www.google.com # Not required
 
     def __str__(self) -> str:
         return f'Author is {self.author} and isbn number is {self.isbn}'
