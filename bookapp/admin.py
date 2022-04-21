@@ -3,7 +3,17 @@ from django.contrib import admin
 # Register your models here.
 from .models import Book, Category
 
-admin.site.register(Book)
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['cat', 'slug']
 
-admin.site.register(Category)
+
+class BookAdmin(admin.ModelAdmin):
+    list_display = ['author', 'title', 'user', 'isbn']
+    list_display_links = ['author', 'title', 'user']
+
+
+admin.site.register(Book, BookAdmin)
+
+
 
