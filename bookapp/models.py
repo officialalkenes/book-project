@@ -39,8 +39,10 @@ class Book(models.Model):
     summary = models.TextField() # 3 == "3"
     isbn = models.PositiveIntegerField() # positive values only
 
-    image = models.ImageField(upload_to='images', blank=True) # add Verbose name
-    docs = models.FileField(upload_to='docs', blank=True) # add Verbose name
+    image = models.ImageField(upload_to='images', blank=True,
+                              verbose_name=_("upload")) # add Verbose name
+    docs = models.FileField(upload_to='docs', blank=True,
+                            verbose_name=_("Upload document")) # add Verbose name
 
     created = models.DateTimeField(auto_now_add=True) # First entry only 7:19
     updated = models.DateTimeField(auto_now=True) # auto save the time of update 7:29
