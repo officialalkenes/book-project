@@ -24,12 +24,6 @@ class Category(models.Model):
         ordering = ['cat'] # this categorise alphabetically "-cat" will be the inverse
 
 
-
-
-
-
-
-
 class Book(models.Model):
     author = models.CharField(
         max_length=20000,
