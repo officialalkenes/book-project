@@ -23,6 +23,10 @@ def send_json(request):
     data = [{'name': 'Peter', 'email': 'peter@example.org'},
             {'name': 'Julia', 'email': 'julia@example.org'}]
 
-    return JsonResponse(data, safe=False)
+
+
+def contact(request):
+    return HttpResponse('<h1>Please contact us if you have a complain</h1>')
+
 # create a contact us view and link the path as Contact us
 
