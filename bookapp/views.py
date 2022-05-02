@@ -47,4 +47,17 @@ def about(request):
     docs = '<h1>This is an about page</h1>'
     return HttpResponse(docs)
 
+<<<<<<< HEAD
+=======
+def send_json(request):
+
+    data = [{'name': 'Peter', 'email': 'peter@example.org'},
+            {'name': 'Julia', 'email': 'julia@example.org'}]
+
+
+
+def contact(request):
+    return HttpResponse('<h1>Please contact us if you have a complain</h1>')
+
+>>>>>>> 9d113eea9ba9a52ae0920d736edcf8c66af9da9e
 # create a contact us view and link the path as Contact us

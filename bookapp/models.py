@@ -13,6 +13,11 @@ class Category(models.Model):
 
     def __str__(self) -> str:
         return self.cat
+    
+    def save(self, *args, **kwargs): # if  blank is True it is stored as ""
+        if self.slug == "":
+            self.slug = slugify(self.cat)
+        return super().save(self, *args, **kwargs)
     class Meta:
         verbose_name = "Book Category" # represent the model name on db
         verbose_name_plural = "Book Categories" # represent the model name as a plural on db
