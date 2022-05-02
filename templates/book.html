@@ -1,0 +1,28 @@
+{% comment %} Ginger Templating {% endcomment %}
+
+<h1> This is a Book Table </h1>
+
+
+<table>
+  <tr>
+    {% comment %} Table Head {% endcomment %}
+    <th>Author</th>
+    <th>User</th>
+    <th>Title</th>
+    <th>Date Created</th>
+    <th>Last Updated</th>
+    
+  </tr>
+
+  {% comment %} Table body {% endcomment %}
+  {% for book in books %}
+  {% comment %} Table Row {% endcomment %}
+  <tr>
+    <td>{{book.author}}</td>
+    <td>{{book.user.email}}</td>
+    <td>{{book.title|truncatewords:2}}</td>
+    <td>{{book.created|time}}</td>
+    <td>{{book.updated|time}}</td>
+  </tr>
+  {% endfor %}
+</table>
