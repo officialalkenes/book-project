@@ -9,7 +9,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['author', 'title', 'user', 'isbn']
+    list_display = ['id', 'author', 'title', 'user', 'isbn']
     list_display_links = ['author', 'title', 'user']
 
 

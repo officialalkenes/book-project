@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% comment %} Ginger Templating {% endcomment %}
+{% block title %} 
+{% comment %} Block title Allows Title modifications {% endcomment %}
+<title> Bookepedia | All Books </title>
+{% endblock title %}
+
+{% block content %}
+
+<hr>
+<br>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for book in books  %}
+  {% comment %} If total number of books is 11, the cards will be 11 {% endcomment %}
+  <div class="col">
+    <div class="card h-100">
+      <img src="{{book.image_url|default_if_none:'#' }}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{book.title}}</h5>
+        <p class="card-text">{{book.summary}}</p>
+      </div>
+    </div>
+
+  </div>
+  {% endfor %}
+
+</div>
+<hr>
+<br>
+
+
+<h1> This is a Book Table </h1>
+
+
+<table>
+  <tr>
+    {% comment %} Table Head {% endcomment %}
+    <th>Author</th>
+    <th>User</th>
+    <th>Title</th>
+    <th>Date Created</th>
+    <th>Last Updated</th>
+    
+  </tr>
+
+  {% comment %} Table body {% endcomment %}
+  {% for book in books %}
+  {% comment %} Table Row {% endcomment %}
+  <tr>
+    <td>{{book.author}}</td>
+    <td>{{book.user.email}}</td>
+    <td>{{book.title|truncatewords:2}}</td>
+    <td>{{book.created|time}}</td>
+    <td>{{book.updated|time}}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock content %}

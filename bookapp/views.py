@@ -15,7 +15,7 @@ from .models import Book
 # Object Relation Mapping (orm) -> objects
 
 def home(request):
-    return HttpResponse("<h1>Welcome to the page</h1>") # Change to render view
+    return render(request, 'bookapp/home.html') # Change to render view
 
 # CRUD - CREATE, READ, UPDATE AND DELETE
 # Read
@@ -24,9 +24,15 @@ def books(request): # Get by Defaul t
     context = {
         'books': books,
     }
-    template_name = 'book.html'
+    template_name = 'bookapp/book.html'
     return render(request, template_name, context)
 
+def book_details(request, pk): 
+    book = Book.objects.get(id=pk)
+    context = {
+        'book': book
+    }
+    return render(request, 'bookapp/book-details.html', context)
 
 def addbooks(request):
     form = BookForm() # Get the form
@@ -40,24 +46,9 @@ def addbooks(request):
     context = {
         'form': form,
     }
-    return render(request, 'demo/home.html', context)
-
+    return render(request, 'bookapp/add-new-book.html', context)
 
 def about(request):
-    docs = '<h1>This is an about page</h1>'
-    return HttpResponse(docs)
+    return render(request, 'bookapp/about.html')
 
-<<<<<<< HEAD
-=======
-def send_json(request):
-
-    data = [{'name': 'Peter', 'email': 'peter@example.org'},
-            {'name': 'Julia', 'email': 'julia@example.org'}]
-
-
-
-def contact(request):
-    return HttpResponse('<h1>Please contact us if you have a complain</h1>')
-
->>>>>>> 9d113eea9ba9a52ae0920d736edcf8c66af9da9e
 # create a contact us view and link the path as Contact us

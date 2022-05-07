@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %} 
+{% comment %} Block title Allows Title modifications {% endcomment %}
+<title> Bookepedia | Add New Books </title>
+{% endblock title %}
+
+{% block content %}
+
+<hr>
+<br>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="m-4 p-8">
+  <form action='' method='POST'>
+    {% csrf_token %}
+
+    {{form|crispy}}
+    <input type="submit" value="Submit">
+  </form>
+
+</div>
+</div>
+{% endblock content %}

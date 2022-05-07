@@ -57,3 +57,8 @@ class Book(models.Model):
         verbose_name = "Book Class" # represent the model name on db
         verbose_name_plural = "Book Classes" # represent the model name as a plural on db
         ordering = ['-created'] # this categorise alphabetically "-cat" will be the inverse
+
+    @property
+    def image_url(self):
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
