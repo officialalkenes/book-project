@@ -19,12 +19,17 @@ def home(request):
 
 # CRUD - CREATE, READ, UPDATE AND DELETE
 # Read
+# List all the books
 def books(request): # Get by Defaul t
-    books = Book.objects.all()
+    # .count() is used to count all the objects from the specified model
+    count = Book.objects.all().count()
+    books = Book.objects.all() # gets all the book object and stores them as queryset
+
     context = {
         'books': books,
+        'count': count,
     }
-    template_name = 'bookapp/book.html'
+    template_name = 'bookapp/index.html'
     return render(request, template_name, context)
 
 def book_details(request, pk): 
@@ -48,6 +53,7 @@ def addbooks(request):
     }
     return render(request, 'bookapp/add-new-book.html', context)
 
+# Doesn't Need Context
 def about(request):
     return render(request, 'bookapp/about.html')
 
