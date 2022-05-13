@@ -8,7 +8,7 @@ from .models import Book
 # google.com = GET REQUEST
 # CREATE GOOGLE ACCOUNT = POST
 # POST AND GET REQUEST
-# PUT METHOD
+# PUT METHOD - Updating my Facebook Profile
 # DELETE METHOD
 # CSRF TOKEN
 
@@ -32,12 +32,15 @@ def books(request): # Get by Defaul t
     template_name = 'bookapp/index.html'
     return render(request, template_name, context)
 
-def book_details(request, pk): 
-    book = Book.objects.get(id=pk)
+def book_detail(request, pk): # Detail View - All Details of the book
+    detail = Book.objects.get(id=pk)
     context = {
-        'book': book
+        'detail': detail
     }
-    return render(request, 'bookapp/book-details.html', context)
+    template_name = 'bookapp/book-details.html'
+    return render(request, template_name, context)
+
+
 
 def addbooks(request):
     form = BookForm() # Get the form

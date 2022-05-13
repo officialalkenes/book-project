@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% comment %} Ginger Templating {% endcomment %}
+{% block title %}
+{% comment %} Block title Allows Title modifications {% endcomment %}
+<title> Bookepedia | Book Detail </title>
+{% endblock title %}
+
+{% block content %}
+<main>
+
+    <h2> Book Detail </h2>
+    <hr>
+    {{detail.title}}
+
+</main>
+{% endblock content %}
