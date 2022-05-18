@@ -34,6 +34,7 @@ INSTALLED_APPS = [
 
 LOCAL_APPS = [
     'bookapp.apps.BookappConfig',
+    'user.apps.UserConfig',
 ]
 
 THIRD_PARTY = [
